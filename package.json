@@ -20,7 +20,5 @@
     "url": "https://github.com/boblauer/url-exists/issues"
   },
   "homepage": "https://github.com/boblauer/url-exists#readme",
-  "dependencies": {
-    "request": ">=1"
-  }
+  "dependencies": {}
 }

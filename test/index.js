@@ -8,11 +8,15 @@ urlExists('https://www.google.com', function(err, exists) {
   urlExists('https://google.com', function(err, exists) {
     assert(exists === true);
 
-    urlExists('https://www.asdflkasdfljalsfdjasfdljklsjafasdfljjkasfdsafdljfdsaljakljsdljksafasfdlk.lasjkd', function(err, exists) {
-      assert(exists === false);
+    urlExists('http://www.google.com', function(err, exists) {
+      assert(exists === true);
 
-      console.log('All tests pass!');
-      process.exit(0);
+      urlExists('https://www.asdflkasdfljalsfdjasfdljklsjafasdfljjkasfdsafdljfdsaljakljsdljksafasfdlk.lasjkd', function(err, exists) {
+        assert(exists === false);
+
+        console.log('All tests pass!');
+        process.exit(0);
+      });
     });
   });
 });
