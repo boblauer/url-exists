@@ -1,22 +1,10 @@
-var http = require('http');
-var https = require('https');
-var parse = require('url').parse;
+var request = require('request');
 
 function urlExists(url, cb) {
-  var urlParts = parse(url);
-  var request = (urlParts.protocol === 'https:' ? https : http).request;
-
-  urlParts.method = 'HEAD';
-  var req = request(urlParts, function (res) {
-    var found = /4\d\d/.test(res.statusCode) === false;
-    cb(null, found);
+  request({ url: url, method: 'HEAD' }, function(err, res) {
+    if (err) return cb(null, false);
+    cb(null, /4\d\d/.test(res.statusCode) === false);
   });
-
-  req.on('error', function(err) {
-    cb(null, false);
-  });
-
-  req.end();
 }
 
 module.exports = urlExists;
